@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Speech Synthesis App</title>
   <style>
     body {
@@ -40,10 +40,10 @@
   <select id="voices"></select><br>
 
   <label for="rate">Rate: <span id="rate-value">1</span></label><br>
-  <input type="range" id="rate" min="0.5" max="2" value="1" step="0.1"><br>
+  <input type="range" id="rate" name="rate" min="0.5" max="2" value="1" step="0.1"><br>
 
   <label for="pitch">Pitch: <span id="pitch-value">1</span></label><br>
-  <input type="range" id="pitch" min="0" max="2" value="1" step="0.1"><br>
+  <input type="range" id="pitch" name="pitch" min="0" max="2" value="1" step="0.1"><br>
 
   <button id="speak">🔊 Speak</button>
   <button id="stop">⏹️ Stop</button>
@@ -73,7 +73,6 @@
       });
     }
 
-    // Some browsers load voices asynchronously
     if (speechSynthesis.onvoiceschanged !== undefined) {
       speechSynthesis.onvoiceschanged = populateVoices;
     }
@@ -82,7 +81,7 @@
       const textInput = text.value.trim();
       if (!textInput) return alert("Please enter some text to speak.");
 
-      synth.cancel(); // stop any ongoing speech
+      synth.cancel();
 
       utterance = new SpeechSynthesisUtterance(textInput);
       const selectedVoice = voices[voiceSelect.value];
@@ -107,7 +106,6 @@
       pitchValue.textContent = pitch.value;
     });
 
-    // Load voices on page load
     window.onload = populateVoices;
   </script>
 
